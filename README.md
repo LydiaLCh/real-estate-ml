@@ -14,7 +14,7 @@ This project models and predicts real estate prices using machine learning and h
 ## Current Progress
 - [x] Project setup
 - [x] EDA started
-- [ ] Feature engineering
+- [x] Feature engineering
 - [ ] Modeling
 - [ ] Streamlit app
 
