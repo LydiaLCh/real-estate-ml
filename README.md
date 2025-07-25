@@ -18,6 +18,15 @@ This project models and predicts real estate prices using machine learning and h
 - [x] Modeling (Lasso Regression Complete)
 - [ ] Streamlit app
 
+## Preprocessing Steps 
+- Leaky columns removal: Dropped columns that could leak target information (e.g., AveragePrice, LogAveragePrice, and other price-related columns).
+
+- Date and period columns removal: Removed the Date column and all columns with Period datatype.
+
+- Categorical encoding: Applied one-hot encoding to categorical features RegionName and AreaCode (dropping the first category to avoid multicollinearity).
+
+- Numeric feature transformation: Applied Yeo-Johnson power transformation to numeric features using PowerTransformer to normalize distributions.
+
 ## Modeling Summary
 - **Model**: Lasso Regression (with cross-validation for alpha selection)
 - **Test R²**: 0.9648
