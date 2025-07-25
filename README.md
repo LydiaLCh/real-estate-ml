@@ -15,8 +15,33 @@ This project models and predicts real estate prices using machine learning and h
 - [x] Project setup
 - [x] EDA started
 - [x] Feature engineering
-- [ ] Modeling
+- [x] Modeling (Lasso Regression Complete)
 - [ ] Streamlit app
 
+## Modeling Summary
+- **Model**: Lasso Regression (with cross-validation for alpha selection)
+- **Test R²**: 0.9648
+- **Test MSE**: 0.0189
+
+### Most Important Features
+| Feature             | Coefficient |
+|---------------------|-------------|
+| Index               | 0.8781      |
+| TerracedIndex       | -0.6356     |
+| FlatIndex           | 0.2918      |
+| Cash1m%Change       | -0.1448     |
+| Terraced12m%Change  | 0.1103      |
+
 ## Folder Structure
-See below for a breakdown of key folders...
+- `app/`: Streamlit app (to be developed)
+- `data/`: Raw and cleaned datasets
+- `models/`: Trained models and serialized outputs
+- `notebooks/`: Jupyter notebooks for EDA and modeling
+- `simulations/`: Investment simulations and backtesting
+- `src/`: Source code and utilities
+
+## Next Steps
+- Begin geospatial + index analysis (Phase 1, Day 3)
+- Build hedonic price index
+- Design and test investment strategies
+- Integrate modeling into interactive Streamlit app
