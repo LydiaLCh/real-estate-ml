@@ -16,7 +16,7 @@ This project models and predicts real estate prices using machine learning and h
 - [x] EDA started
 - [x] Feature engineering
 - [x] Modeling (Lasso Regression Complete)
-- [ ] Streamlit app
+- [x] Streamlit app
 
 ## Preprocessing Steps 
 - Leaky columns removal: Dropped columns that could leak target information (e.g., AveragePrice, LogAveragePrice, and other price-related columns).
@@ -32,7 +32,7 @@ This project models and predicts real estate prices using machine learning and h
 - **Test R²**: 0.9648
 - **Test MSE**: 0.0189
 
-### Most Important Features
+### Top Predictive Features
 | Feature             | Coefficient |
 |---------------------|-------------|
 | Index               | 0.8781      |
@@ -49,8 +49,9 @@ This project models and predicts real estate prices using machine learning and h
 - `simulations/`: Investment simulations and backtesting
 - `src/`: Source code and utilities
 
-## Next Steps
-- Begin geospatial + index analysis (Phase 1, Day 3)
-- Build hedonic price index
-- Design and test investment strategies
-- Integrate modeling into interactive Streamlit app
+## Completed Features 
+- Exploratory data analysis with macro and regional breakdown
+- Feature engineering for price indices and economic indicators
+- Hedonic price index construction
+- Investment strategy simulation and backtesting
+- Integrated Streamlit dashboard for model visualization
