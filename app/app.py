@@ -1,32 +1,52 @@
-import streamlit as st 
-import pandas as pd 
-import joblib 
+import streamlit as st
+import pandas as pd
+import joblib
 
-# Title 
-st.title("Real Estate Price Predictor")
+def add_time_features(df, date_column='Date'):
+    df = df.copy()
+    df[date_column] = pd.to_datetime(df[date_column], errors='coerce')
+    df = df.dropna(subset=[date_column])
+    df['Year'] = df[date_column].dt.year
+    df['Month'] = df[date_column].dt.month
+    df['DayOfYear'] = df[date_column].dt.dayofyear
+    df['DayOfWeek'] = df[date_column].dt.dayofweek
+    df['Quarter'] = df[date_column].dt.quarter
+    return df.drop(columns=[date_column])
 
-# File upload
-uploaded_file = st.file_uploader("Upload your CSV file", type = ["csv"])
+# Load the preprocessing pipeline and model once at app start
+preprocessor = joblib.load('models/preprocessor.pkl')
+model = joblib.load('models/model.pkl')
 
-if uploaded_file is not None: 
-    #Load the data 
+st.title("Real Estate Price Prediction")
+
+uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+
+if uploaded_file is not None:
     input_df = pd.read_csv(uploaded_file)
-    st.write("### Preview of uploaded data", input_df.head())
+    st.write("### Uploaded Data Preview", input_df.head())
 
-    try:
-        # Load the trained pipeline 
-        pipeline = joblib.load("pipeline.pkl")
+    if 'Date' not in input_df.columns:
+        st.error("CSV must contain a 'Date' column for feature extraction.")
+    else:
+        try:
+            # Add date/time features expected by your model
+            processed_df = add_time_features(input_df, 'Date')
 
-        # Predict 
-        predictions = pipeline.predict(input_df)
+            # Apply preprocessing pipeline
+            X_processed = preprocessor.transform(processed_df)
 
-        # Output 
-        input_df["Predicted Price"] = predictions
-        st.write("### Predictions", input_df)
+            # Predict with your trained model
+            predictions = model.predict(X_processed)
 
-        # Download
-        csv = input_df.to_csv(index = False).encode('utf-8')
-        st.download_button("Download predictions as CSV", csv, "predictions.csv", "text/csv")
-    
-    except Exception as e: 
-        st.error(f"Error: {e}")
+            # Attach predictions to original data for display/download
+            input_df['PredictedPrice'] = predictions
+
+            st.subheader("Predicted Prices")
+            st.write(input_df[['PredictedPrice']])
+
+            csv = input_df.to_csv(index=False)
+            st.download_button("Download Predictions CSV", csv, "predictions.csv")
+        except Exception as e:
+            st.error(f"Error during prediction: {e}")
+
+            
