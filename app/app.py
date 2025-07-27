@@ -14,8 +14,8 @@ def add_time_features(df, date_column='Date'):
     return df.drop(columns=[date_column])
 
 # Load the preprocessing pipeline and model once at app start
-preprocessor = joblib.load('models/preprocessor.pkl')
-model = joblib.load('models/model.pkl')
+preprocessor = joblib.load('/Users/lydialichen/real_estate/real-estate-ml/models/preprocessor.pkl')
+model = joblib.load('/Users/lydialichen/real_estate/real-estate-ml/models/model.pkl')
 
 st.title("Real Estate Price Prediction")
 
