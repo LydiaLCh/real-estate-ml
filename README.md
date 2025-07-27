@@ -41,17 +41,17 @@ This project models and predicts real estate prices using machine learning and h
 | Cash1m%Change       | -0.1448     |
 | Terraced12m%Change  | 0.1103      |
 
-## Folder Structure
-- `app/`: Streamlit app (to be developed)
-- `data/`: Raw and cleaned datasets
-- `models/`: Trained models and serialized outputs
-- `notebooks/`: Jupyter notebooks for EDA and modeling
-- `simulations/`: Investment simulations and backtesting
-- `src/`: Source code and utilities
-
 ## Completed Features 
 - Exploratory data analysis with macro and regional breakdown
 - Feature engineering for price indices and economic indicators
 - Hedonic price index construction
 - Investment strategy simulation and backtesting
 - Integrated Streamlit dashboard for model visualization
+
+## Folder Structure
+- `app/`: Streamlit app
+- `data/`: Raw and cleaned datasets
+- `models/`: Trained models and serialized outputs
+- `notebooks/`: Jupyter notebooks for EDA and modeling
+- `simulations/`: Investment simulations and backtesting
+- `src/`: Source code and utilities
